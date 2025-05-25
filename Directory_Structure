@@ -1,0 +1,22 @@
+AI-Personal-Finance-Advisor/
+│
+├── data/
+│   └── sample_transactions.csv         # Sample financial transactions dataset
+│
+├── notebooks/
+│   └── exploratory_data_analysis.ipynb
+│
+├── src/
+│   ├── data_processing.py              # Code to clean and preprocess transactions
+│   ├── nlp_categorization.py           # NLP model for transaction categorization
+│   ├── expense_prediction.py            # Regression model for spending prediction
+│   ├── suggestion_engine.py             # Logic for personalized suggestions
+│   └── visualize.py                     # Visualization utilities
+│
+├── app.py                             # Streamlit or Flask app for UI (optional)
+│
+├── requirements.txt                   # Required Python packages
+│
+├── README.md                         # Project overview (see below)
+│
+└── LICENSE
