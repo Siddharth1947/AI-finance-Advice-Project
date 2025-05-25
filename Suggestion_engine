@@ -1,0 +1,16 @@
+def generate_suggestions(df):
+    total_spent = df['amount'].sum()
+    food_spent = df[df['category'] == 'Food & Drinks']['amount'].sum()
+    shopping_spent = df[df['category'] == 'Shopping']['amount'].sum()
+
+    suggestions = []
+    if food_spent > 0.3 * total_spent:
+        suggestions.append("You've spent over 30% of your expenses on Food & Drinks. Consider cooking more at home to save.")
+    if shopping_spent > 0.25 * total_spent:
+        suggestions.append("Your Shopping expenses are quite high. Try to set monthly limits.")
+    if total_spent > 1000:
+        suggestions.append("Your monthly expenses exceed $1000. Review your budget to save more.")
+    if not suggestions:
+        suggestions.append("Great job! Your spending looks balanced.")
+
+    return suggestions
