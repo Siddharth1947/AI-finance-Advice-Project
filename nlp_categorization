@@ -1,0 +1,36 @@
+import pandas as pd
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
+from sklearn.pipeline import Pipeline
+import joblib
+
+# Example categories and sample labeled data for demo purposes
+sample_data = {
+    'description': [
+        'Starbucks Coffee', 'Amazon Online Shopping', 'Uber Ride',
+        'Electricity Bill', 'Grocery Store', 'Netflix Subscription',
+        'Gym Membership', 'Movie Theater'
+    ],
+    'category': [
+        'Food & Drinks', 'Shopping', 'Transport',
+        'Utilities', 'Groceries', 'Entertainment',
+        'Health', 'Entertainment'
+    ]
+}
+
+def train_categorizer():
+    df = pd.DataFrame(sample_data)
+    pipeline = Pipeline([
+        ('tfidf', TfidfVectorizer()),
+        ('clf', LogisticRegression())
+    ])
+    pipeline.fit(df['description'], df['category'])
+    joblib.dump(pipeline, 'src/categorizer.pkl')
+    return pipeline
+
+def load_categorizer():
+    return joblib.load('src/categorizer.pkl')
+
+def categorize_transactions(descriptions, model):
+    categories = model.predict(descriptions)
+    return categories
