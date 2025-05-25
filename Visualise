@@ -1,0 +1,12 @@
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+def plot_expense_pie(df):
+    plt.figure(figsize=(6,6))
+    category_sums = df.groupby('category')['amount'].sum()
+    sns.set_palette('pastel')
+    category_sums.plot.pie(autopct='%1.1f%%', startangle=140)
+    plt.title('Spending by Category')
+    plt.ylabel('')
+    plt.tight_layout()
+    plt.show()
